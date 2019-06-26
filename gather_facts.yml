@@ -9,7 +9,7 @@
         - show ip interface brief
     register: intf_bri
   - name: "解析输出"
-    include role:
+    include_role:
       name: clay584.parse_genie
   - name: "格式化输出"
     debug:
