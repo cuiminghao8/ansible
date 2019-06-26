@@ -1,5 +1,5 @@
 ---
-- hosts: ALL
+- hosts: all
   connection: local
   gather_facts: no
   tasks:
