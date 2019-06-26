@@ -2,4 +2,6 @@
   tasks:
   - name: Installing multiple python packages in Ansible
     pip:
+      virtualenv: /var/lib/awx/venv/ansible
+      virtualenv_command: /usr/bin/python3 -m virtualenv
       name: genie
