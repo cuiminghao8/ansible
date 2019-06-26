@@ -3,7 +3,7 @@
 - hosts: localhost
   connection: local
   vars:
-  show_version_output: |
+  show_version_output: "|
    Cisco IOS XE Software, Version 16.05.01b
    Cisco IOS Software [Everest], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.5.1b, RELEASE SOFTWARE (fc1)
   Technical Support: http://www.cisco.com/techsupport
@@ -58,7 +58,7 @@
   7774207K bytes of virtual hard disk at bootflash:.
   0K bytes of WebUI ODM Files at webui:.
 
-  Configuration register is 0x2102
+  Configuration register is 0x2102"
 
   tasks:
   - name: Read in parse_genie role
