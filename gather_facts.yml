@@ -1,6 +1,7 @@
 ---
 - hosts: '{{ hosts }}'
   connection: local
+  gather_facts: no
   tasks:
   - name: "show ip interface brief"
     ios_command:
@@ -13,4 +14,3 @@
   - name: "格式化输出"
     debug:
       msg: "{{ intf_bri | parse_genie(command='show ip interface brief',os='ios')}}"
-      
