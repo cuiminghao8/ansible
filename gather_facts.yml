@@ -11,6 +11,8 @@
   - name: "解析输出"
     include_role:
       name: clay584.parse_genie
+
   - name: "格式化输出"
     debug:
       msg: "{{ intf_bri | parse_genie(command='show ip interface brief',os='ios')}}"
+    delegate_to: localhost
