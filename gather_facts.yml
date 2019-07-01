@@ -1,6 +1,5 @@
 ---
-- hosts: '{{ hosts }}'
-  connection: local
+- hosts: {{ hosts }}
   gather_facts: no
   tasks:
     name: "用ios_facts模块收集设备硬件信息"
