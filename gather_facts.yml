@@ -2,12 +2,12 @@
 - hosts: all
   gather_facts: no
   tasks:
-    name: "用ios_facts模块收集设备硬件信息"
-    ios_facts:
-      gather_subset:
-        - config
-    when: ansible_network_os == "ios"
-    register: hardware_info
-    name: "debug输出硬件信息"
-    debug:
-      msg: "{{ hardware_info}}"
+    - name: "用ios_facts模块收集设备硬件信息"
+      ios_facts:
+        gather_subset:
+          - config
+      when: ansible_network_os == "ios"
+      register: hardware_info
+    - name: "debug输出硬件信息"
+      debug:
+        msg: "{{ hardware_info}}"
