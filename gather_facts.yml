@@ -6,8 +6,8 @@
 #      ios_facts:
 #        gather_subset:
 #          - all
-      when: ansible_network_os == "ios"
-      register: facts
+#      when: ansible_network_os == "ios"
+#      register: facts
     - name: "debug输出硬件信息"
       debug:
 #        msg: "|{{ facts.ansible_facts.ansible_net_hostname }} | {{ ansible_ssh_host }} | {{ facts.ansible_facts.ansible_net_version }} | {{ facts.ansible_facts.ansible_net_system }}"
