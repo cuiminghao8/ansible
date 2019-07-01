@@ -11,4 +11,4 @@
     - name: "debug输出硬件信息"
       debug:
 #        msg: "|{{ facts.ansible_facts.ansible_net_hostname }} | {{ ansible_ssh_host }} | {{ facts.ansible_facts.ansible_net_version }} | {{ facts.ansible_facts.ansible_net_system }}"
-         msg: "{{ ansible_net_system}}"
+         msg: "{{ ansible_facts.ansible_net_system}}"
