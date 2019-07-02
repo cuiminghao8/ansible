@@ -1,0 +1,9 @@
+---
+- hosts: '{{ hosts }}'   #通过ansible-playbook -e参数传入变量
+  gather_facts: no
+  tasks:
+   - name: "比较配置变更"
+     ios_config:
+       diff_against: intended
+       intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}_config.*') }}"
+     register: config_change
