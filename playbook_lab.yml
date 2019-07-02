@@ -19,4 +19,4 @@
         parents:
           - interface {{ item.port }}
         with_items: "{{ interfaces }}"
-        when: {{ item.router == inventory_hostname }}
+        when: (item.router == inventory_hostname)
