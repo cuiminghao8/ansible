@@ -30,3 +30,7 @@
           - network {{ item.network2 }} 0.0.0.255 area 0
       with_items: "{{ ospf }}"
       when: (item.router == inventory_hostname)
+    - name: "比较配置变更"
+      ios_config:
+        diff_against: intended
+        intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}_config.txt') }}"
