@@ -7,6 +7,6 @@
        diff_against: intended
        intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}_config.txt') }}"
      register: config_change
-  - name: "debug changes"
-    debug:
-      msg: "{{ config_change }}"
+   - name: "debug changes"
+     debug:
+       msg: "{{ config_change }}"
