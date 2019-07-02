@@ -5,5 +5,5 @@
    - name: "比较配置变更"
      ios_config:
        diff_against: intended
-       intended_config: "{{ lookup('filelob', 'backup/{{ inventory_hostname }}_config.txt') }}"
+       intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}_config.txt') }}"
      register: config_change
