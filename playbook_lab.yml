@@ -1,6 +1,7 @@
 ---
 - hosts: '{{ hosts }}'   #通过ansible-playbook -e参数传入变量
   gather_facts: no
+  ignore_errors: yes
   vars_files:
     - vars.yml
   tasks:
