@@ -18,5 +18,5 @@
 # {router: R1, ip: 10.1.12.1, mask: 255.255.255.0, port: g0/1}
         parents:
           - interface {{ item.port }}
-        with_items: "{{ interfaces }}"
-        when: (item.router == inventory_hostname)
+      with_items: "{{ interfaces }}"
+      when: (item.router == inventory_hostname)
