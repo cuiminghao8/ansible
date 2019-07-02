@@ -21,3 +21,12 @@
           - interface {{ item.port }}
       with_items: "{{ interfaces }}"
       when: (item.router == inventory_hostname)
+    - name: "建立ospf area 0"
+      ios_config:
+        lines:
+          - router ospf 1
+          - router-id {{ item.router_id }}
+          - network {{ item.network1 }} 0.0.0.255 area 0
+          - network {{ item.network2 }} 0.0.0.255 area 0
+      with_items: "{{ ospf }}"
+      when: (item.router == inventory_hostname)
