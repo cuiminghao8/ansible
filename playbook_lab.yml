@@ -1,7 +1,8 @@
 ---
-- hosts: '{{ hosts }}'
+- hosts: '{{ hosts }}'   #通过ansible-playbook -e参数传入变量
   gather_facts: no
   tasks:
     - name: "使用ios_config先将当前配置备份到控制机"
       ios_config:
         backup: yes
+      when: ansible_network_os="ios"
