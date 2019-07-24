@@ -31,6 +31,9 @@
           - network {{ item.network2 }} 0.0.0.255 area 0
       with_items: "{{ ospf }}"
       when: (item.router == inventory_hostname)
+      notify:
+        比较配置变更
+  handler:
     - name: "比较配置变更"
       ios_config:
         diff_against: intended
