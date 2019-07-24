@@ -31,9 +31,6 @@
           - network {{ item.network2 }} 0.0.0.255 area 0
       with_items: "{{ ospf }}"
       when: (item.router == inventory_hostname)
-      notify:
-        保存配置
-  handlers:
     - name: 保存配置
       ios_config:
         backup: yes
