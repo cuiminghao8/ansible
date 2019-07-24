@@ -34,7 +34,7 @@
       notify:
         保存配置
   handlers:
-    - name: "保存配置"
+    - name: 保存配置
       ios_config:
         backup: yes
         backup_options:
