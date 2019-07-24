@@ -32,9 +32,10 @@
       with_items: "{{ ospf }}"
       when: (item.router == inventory_hostname)
       notify:
-        比较配置变更
-  handler:
-    - name: "比较配置变更"
+        保存配置
+  handlers:
+    - name: "保存配置"
       ios_config:
-        diff_against: intended
-        intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}_config.txt') }}"
+        backup: yes
+        backup_options:
+          - dir_path: "../backup/"
