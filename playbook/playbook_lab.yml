@@ -23,8 +23,9 @@
       with_items: "{{ interfaces }}"
       when: (item.router == inventory_hostname)
     - name: "建立ospf area 0"
-      ios_config:
-        lines:
+      ios_commands:
+        command:
+          - conf t
           - router ospf 1
           - router-id {{ item.router_id }}
           - network {{ item.network1 }} 0.0.0.255 area 0
