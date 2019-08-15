@@ -1,0 +1,38 @@
+---
+- hosts: all   #通过ansible-playbook -e参数传入变量
+  gather_facts: no
+  ignore_errors: yes
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: "使用ios_config先将当前配置备份到控制机"
+      ios_config:       #使用ios_config模块
+        backup: yes     #ios_config模块中的"backup" parameter设置为yes，
+                        #配置文件自动保存到与剧本相同目录下的/backup/文件夹下
+      when: ansible_network_os=='ios' #判断，只有network_os是ios的设备才执行
+    - name: "将R1，R2，R3互联，使用ios_config配置互联接口IP"
+      ios_config:
+        lines:
+#ios_config模块中“line” parameter，表示在设备中运行命令
+          - ip address {{ item.ip }} {{item.mask}}
+          - no shut
+#item表示遍历with_items中的元素，item.ip匹配vars.yml中的ip字段。
+# {router: R1, ip: 10.1.12.1, mask: 255.255.255.0, port: g0/1}
+        parents:
+          - interface {{ item.port }}
+      with_items: "{{ interfaces }}"
+      when: (item.router == inventory_hostname)
+    - name: "建立ospf area 0"
+      ios_command:
+        commands:
+          - conf t
+          - router ospf 1
+          - router-id {{ item.router_id }}
+          - network {{ item.network1 }} 0.0.0.255 area 0
+          - network {{ item.network2 }} 0.0.0.255 area 0
+      with_items: "{{ ospf }}"
+      when: (item.router == inventory_hostname)
+    - name: 保存配置
+      ios_config:
+        backup: yes
+        backup_options:

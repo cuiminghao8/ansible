@@ -3,7 +3,7 @@
   connection: local
   gather_facts: no
   tasks:
-  - name: "show ip interface brief"
+  - name: "运行命令"
     ios_command:
       commands:
         - show ip interface brief
