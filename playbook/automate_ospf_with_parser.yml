@@ -10,7 +10,7 @@
     register: cdp_neighbors
   - name: "解析cdp_neighbors输出"
     set_fact:
-    parsed_cdp_neighbor: "{{ cdp_neighbors.stdout[0] | parse_cli_textfsm('../templates/parse_cli/cisco_ios_show_cdp_neighbors_detail.template') }}"
+      parsed_cdp_neighbor: "{{ cdp_neighbors.stdout[0] | parse_cli_textfsm('../templates/parse_cli/cisco_ios_show_cdp_neighbors_detail.template') }}"
   - name: "输出解析结果"
     debug:
       msg: "{{ parsed_cdp_neighbor }}"
