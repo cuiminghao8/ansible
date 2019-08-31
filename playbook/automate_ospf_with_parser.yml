@@ -6,7 +6,7 @@
   - name: "输入show cdp neighbors命令"
     ios_command:
       commands:
-        - show cdp neighbors
+        - show cdp neighbors detail
     register: cdp_neighbors
   - name: "解析cdp_neighbors输出"
     set_fact:
