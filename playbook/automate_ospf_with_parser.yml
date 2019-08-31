@@ -14,3 +14,9 @@
   - name: "输出解析结果"
     debug:
       msg: "{{ parsed_cdp_neighbor }}"
+  - name: "在端口上开启ospf"
+    ios_command:
+      commands:
+        - interface {{ item.LOCAL_PORT }}
+        - ip ospf 1 area 0
+    with_items: "{{ parsed_cdp_neighbor }}"
