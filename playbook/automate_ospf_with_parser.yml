@@ -10,7 +10,7 @@
     register: cdp_neighbors
   - name: "查看输出结果"
     debug:
-      msg: "{{ cdp_neighbors }}"
+      msg: "{{ cdp_neighbors.stdout_lines | join('\n') }}"
 
 #  - name: "解析cdp_neighbors输出"
 #    set_fact:
