@@ -1,0 +1,12 @@
+[router]
+192.168.50.201
+192.168.50.202
+192.168.50.203
+[router:vars]
+ansible_connection=network_cli
+ansible_ssh_user=admin
+ansible_ssh_pass=admin
+ansible_become=true
+ansible_become_method=enable
+ansible_become_pass=admin
+ansible_network_os=ios

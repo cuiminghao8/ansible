@@ -1,0 +1,25 @@
+
+---
+#Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+#                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+#                  D - Remote, C - CVTA, M - Two-port Mac Relay
+#
+#Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+#SW-SHDC-4507CORE-01.nio.com
+#                 Gig 0/0/1         162             R S I  WS-C4507R Gig 1/1/21
+
+Total cdp entries displayed : 1
+vars:
+  lldp_neighbor:
+    id: "{{ item.id }}"
+    local_intf: "{{ (item.local_intf|replace('Gi', 'GigabitEthernet') | replace('Po','PortChannel')).split(', ') }}"
+    hold_time: "{{ item.hold_time.split() }}"
+    capability: "{{ item.capability }}"
+    port_id: "{{ item.port_id }}"
+
+keys:
+  lldp_neighbors:
+    value: "{{ lldp_neighbor }}"
+    start_block: ".+Port ID"
+    end_block: "^Total entries displayed.+$"
+    items: "^(?P<id>.{20})(?P<local_intf>.{15})(?P<hold_time>.{11})(?P<capability>.{16})(?P<port_id>.+)?"
